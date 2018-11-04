@@ -1,0 +1,22 @@
+---
+title: Testing
+author: Rebecca A. Senior
+date: '2018-11-04'
+slug: testing
+categories:
+  - R
+tags:
+  - test
+image:
+  caption: ''
+  focal_point: ''
+---
+
+Here is my post, in which I am going to make a plot.
+
+```{r, fig.cap="Look at my pretty plot"}
+
+plot(1:10)
+
+```
+
