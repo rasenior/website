@@ -30,7 +30,7 @@ weight = 5
 
 # Biography
 
-I recently completed my PhD at the University of Sheffield, under the supervision of Dr David Edwards and Prof Jane Hill. My research interests all centre around exploring ecological patterns across scales, and using this to inform pragmatic and adaptible conservation. I have a particular interest in using advances in technology and open data to tackle difficult questions.
+I recently completed my PhD at the University of Sheffield, under the supervision of Dr David Edwards and Prof Jane Hill. My research interests centre around exploring ecological patterns across scales, and using this to inform pragmatic and adaptible conservation. I have a particular interest in using advances in technology and open data to tackle difficult questions.
 
 
 
