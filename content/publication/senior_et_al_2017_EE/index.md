@@ -1,7 +1,7 @@
 +++
 title = "A pantropical analysis of the impacts of forest degradation and conversion on local temperature"
 date = "2017-01-01"
-authors = ["Rebecca A. Senior", "Jane K. Hill", "Pamela González del Pliego", "Laurel K. Goode", "David P. Edwards"]
+authors = ["**Rebecca A. Senior**", "Jane K. Hill", "Pamela González del Pliego", "Laurel K. Goode", "David P. Edwards"]
 publication_types = ["2"]
 publication = "Ecology and Evolution, (7), 19, _pp. 7897--7908_, https://doi.org/10.1002/ece3.3262"
 publication_short = "Ecology and Evolution, (7), 19, _pp. 7897--7908_, https://doi.org/10.1002/ece3.3262"
