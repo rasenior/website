@@ -4,9 +4,9 @@ widget = "featurette"  # Do not modify this line!
 date = 2017-09-20T00:00:00
 
 # Activate this widget? true/false
-active = true
+active = false
 
-title = "Skills"
+title = ""
 subtitle = ""
 
 # Order that this section will appear in.
@@ -24,14 +24,14 @@ weight = 7
 [[feature]]
   icon = "r-project"
   icon_pack = "fab"
-  name = "R"
-  description = "Used for everything from data management to making this website"
+  name = ""
+  description = ""
   
 [[feature]]
   icon = "python"
   icon_pack = "fab"
   name = "Python"
-  description = "Mainly for spatial analyses"
+  description = ""
   
 [[feature]]
   icon = "frog"
