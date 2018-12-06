@@ -30,7 +30,9 @@ weight = 5
  
 +++
 
-I recently completed my PhD at the University of Sheffield (UK), where I studied how **loss and degradation of tropical forest** impacts species' ability to cope with global **climate change**. Before that, I worked at **UNEP-WCMC** (UK), mainly on the [PREDICTS project](https://www.predicts.org.uk/), and I completed my undergraduate studies at the University of Cambridge (UK). 
+I recently completed my PhD at the University of Sheffield (UK), where I studied how **loss and degradation of tropical forest** impacts species' ability to cope with global **climate change**. During my PhD I also completed a 3-month placement at [Rewilding Britain](https://www.rewildingbritain.org.uk/). 
+
+Before my PhD, I worked at **UNEP-WCMC** (UK), mainly on the [PREDICTS project](https://www.predicts.org.uk/), and I completed my undergraduate studies at the University of Cambridge (UK). 
 
 My research interests are based on exploring ecological patterns across scales, and using this to inform pragmatic and adaptible **conservation**. I have a particular interest in using advances in **technology and open data** to tackle difficult questions. 
 

@@ -25,6 +25,11 @@ external_link = ""
   focal_point = "Smart"
 +++
 
-My PhD explored interactions between land-use change and climate change at different spatial scales in the tropics. I was based in the [Edwards lab](http://www.edwardslab.group.shef.ac.uk/) (aka The Mynas), at the University of Sheffield, and jointly supervised by [Prof Jane Hill](https://www.york.ac.uk/biology/research/ecology-evolution/kane-k-hill/#tab-1) at the University of York.
+My PhD explored interactions between land-use change and climate change at different spatial scales in the tropics. I was based in the [Edwards lab](http://www.edwardslab.group.shef.ac.uk/) (aka The Mynas), at the University of Sheffield, and jointly supervised by [Prof Jane Hill](https://www.york.ac.uk/biology/research/ecology-evolution/kane-k-hill/#tab-1) at the University of York. I was funded by [ACCE](https://acce.shef.ac.uk/) (Adapting to the Challenges of a Changing Environment), which is a [NERC](https://nerc.ukri.org/) (Natural Environment Research Council) Doctoral Training Partnership.
 
-<img src="/img/mynas.png" alt="Myna logo", width = "40%">
+<img src="/img/mynas.png" alt="Myna logo", width = "40%", align = "left">
+<img src="/img/UoS_logo.png" alt="University of Sheffield logo", width = "40%">
+<img src="/img/ACCE_logo.png" alt="ACCE logo", width = "40%">
+<img src="/img/NERC_logo.jpg" alt="NERC logo", width = "40%">
+
+

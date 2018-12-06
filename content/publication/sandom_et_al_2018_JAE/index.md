@@ -9,7 +9,7 @@ abstract = ""
 abstract_short = ""
 image_preview = ""
 selected = false
-projects = []
+projects = ["rewilding-britain"]
 tags = []
 url_pdf = "https://besjournals.onlinelibrary.wiley.com/doi/epdf/10.1111/1365-2664.13276"
 url_preprint = ""
@@ -23,6 +23,11 @@ url_source = ""
 math = true
 highlight = true
 [header]
-image = ""
-caption = ""
+[image]
+  # Caption (optional)
+  caption = ""
+
+  # Focal point (optional)
+  # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
+  focal_point = "Center"
 +++
