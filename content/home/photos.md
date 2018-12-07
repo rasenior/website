@@ -19,4 +19,4 @@ weight = 60
 
 Photos from my PhD fieldwork in and around Danum Valley, Borneo.
 
-<a data-flickr-embed="true" data-footer="true"  href="https://www.flickr.com/gp/160917631@N04/H064ub" title="Borneo"><img src="https://farm5.staticflickr.com/4817/44399060930_892784447d_b.jpg" width="1024" height="683" alt="Borneo"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true" data-footer="true"  href="https://www.flickr.com/photos/160917631@N04/albums/72157698511611990" title="Borneo"><img src="https://farm5.staticflickr.com/4809/45303708925_6dcffa7ea2_z.jpg" width="640" height="480" alt="Borneo"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
