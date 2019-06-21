@@ -29,12 +29,11 @@ weight = 5
   year = 2013
  
 +++
+I am a **conservation biologist** interested in exploring ecological patterns across scales, ultimately to inform pragmatic and adaptible conservation practices. I have a particular interest in using advances in **technology and open data** to tackle difficult questions. I'm an avid [<i class="fab fa-r-project"></i>](https://www.r-project.org/) user, and you can follow my current work on GitHub [<i class="fab fa-github-alt"></i>](https://github.com/rasenior).
 
-I recently completed my PhD at the University of Sheffield (UK), where I studied how **loss and degradation of tropical forest** impacts species' ability to cope with global **climate change**. 
+Currently I am a postdoctoral research associate at Princeton University (USA), working with [Prof David Wilcove](https://scholar.princeton.edu/dwilcove/meet-team) to assess the **effectiveness of different conservation strategies** for recovering threatened species. 
 
-Before my PhD, I worked at **UNEP-WCMC** (UK), mainly on the [PREDICTS project](https://www.predicts.org.uk/), and I completed my undergraduate studies at the University of Cambridge (UK). 
-
-My research interests are based on exploring ecological patterns across scales, and using this to inform pragmatic and adaptible **conservation**. I have a particular interest in using advances in **technology and open data** to tackle difficult questions. I'm an avid [<i class="fab fa-r-project"></i>](https://www.r-project.org/) user, and you can follow my current work on GitHub [<i class="fab fa-github-alt"></i>](https://github.com/rasenior).
+I completed my PhD at the University of Sheffield (UK), where I studied how **loss and degradation of tropical forest** impacts species' ability to cope with global **climate change**. Before that, I worked at **UNEP-WCMC** (UK), mainly on the [PREDICTS project](https://www.predicts.org.uk/), and I completed my undergraduate studies at the University of Cambridge (UK). 
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 

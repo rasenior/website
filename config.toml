@@ -52,19 +52,19 @@ enableGitInfo = true
 
   # Your details.
   name = "Rebecca A. Senior"
-  role = ""
+  role = "Postdoctoral Research Associate"
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-  organizations = [ { name = "", url = "" } ]
+  organizations = [ { name = "Princeton University", url = "https://scholar.princeton.edu/dwilcove/meet-team" } ]
 
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait1.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
 
   # Details for the Contact Widget
   email = "rebecca.a.senior@gmail.com"
-  address = "Department of Animal & Plant Sciences, Alfred Denny Building, University of Sheffield, Sheffield, OL14 5LH, UK"
-  office_hours = "Monday-Friday 09:00 to 17:00 (GMT)"
+  address = "Woodrow Wilson School of Public and International Affairs, Princeton University, Princeton, NJ 08540, USA"
+  office_hours = "Monday-Friday 09:00 to 17:00 (EST)"
   phone = ""
   skype = "senior.rebecca"
   telegram = ""
@@ -91,8 +91,8 @@ enableGitInfo = true
   #   3: OpenStreetMap (Mapbox)
   map = 2
   map_api_key = ""
-  latitude = "53.38161"
-  longitude = "-1.48783"
+  latitude = "40.341948"
+  longitude = "-74.6534232"
   zoom = 15
 
   # SITE SETUP
