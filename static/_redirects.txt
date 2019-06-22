@@ -1,0 +1,2 @@
+https://rebeccasenior.netlify.com/*  https://rasenior.rbind.io/:splat  301!
+http://rebeccasenior.netlify.com/*   https://rasenior.rbind.io/:splat  301!
