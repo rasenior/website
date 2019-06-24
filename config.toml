@@ -279,7 +279,7 @@ enableGitInfo = true
   [[params.social]]
     icon = "cv"
     icon_pack = "ai"
-    link = "https://github.com/rasenior/CV/raw/master/SeniorRA_cv.pdf"
+    link = "https://github.com/rasenior/CV/blob/master/SeniorRA_cv.pdf"
 
 # Navigation Links
 #   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
