@@ -1,11 +1,11 @@
 +++
-title = "Environmental distribution modelling of seven endemic desert plants reveals the extent of {Tertiary} tropical relict vegetation"
-date = "accepted"
-authors = ["James S. Borrell", "Ghudaina {Al Issai}", "Darach A. Lupton", "Thomas Starnes", "Abdulrahman {Al Hinai}", "Saif {Al Hatmi}", "Rebecca A. Senior", "Tim Wilkinson", "Jo D. Milborrow", "Andrew Stokes-Rees", "Annette Patzelt"]
+title = "Environmental distribution modelling of seven endemic desert plants reveals the extent of Tertiary tropical relict vegetation"
+date = ""
+authors = ["James S. Borrell", "Ghudaina Al Issai", "Darach A. Lupton", "Thomas Starnes", "Abdulrahman Al Hinai", "Saif Al Hatmi", "Rebecca A. Senior", "Tim Wilkinson", "Jo D. Milborrow", "Andrew Stokes-Rees", "Annette Patzelt"]
 publication_types = ["2"]
 
 # Publication name and optional abbreviated version.
-publication = "Annals of Botany"
+publication = "Annals of Botany, accepted"
 
 # Projects (optional).
 #   Associate this publication with one or more of your projects.
@@ -44,7 +44,7 @@ math = true
 # To use, add an image named `featured.jpg/png` to your page's folder. 
 [image]
   # Caption (optional)
-  caption = "Image credit: **Rebecca A. Senior, James S. Borrell**"
+  caption = "Image credit: **Rebecca A. Senior**"
 
   # Focal point (optional)
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
