@@ -1,6 +1,6 @@
 +++
 title = "Environmental distribution modelling of seven endemic desert plants reveals the extent of Tertiary tropical relict vegetation"
-date = "2019-12-31"
+date = ""2019-01-01""
 authors = ["James S. Borrell", "Ghudaina Al Issai", "Darach A. Lupton", "Thomas Starnes", "Abdulrahman Al Hinai", "Saif Al Hatmi", "Rebecca A. Senior", "Tim Wilkinson", "Jo D. Milborrow", "Andrew Stokes-Rees", "Annette Patzelt"]
 publication_types = ["2"]
 
@@ -13,7 +13,7 @@ publication = "Annals of Botany, _accepted_"
 #   E.g. `projects = ["deep-learning"]` references 
 #   `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`
-projects = ["obg"]
+projects = []
 
 # Tags (optional).
 #   Set `tags = []` for no tags, or use the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
