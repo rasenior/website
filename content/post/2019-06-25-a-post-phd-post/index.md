@@ -1,8 +1,8 @@
 ---
-title: A post-PhD update
+title: A post-PhD post
 author: Rebecca A. Senior
 date: '2019-06-25'
-slug: a-post-phd-update
+slug: a-post-phd-post
 categories: []
 tags: []
 image:
@@ -18,7 +18,7 @@ In other news, the final two papers from my PhD have now been accepted for publi
 
 Earlier this year I was also priviliged to spend a couple of months at the University of Florida visiting [Dr Brett Scheffers](https://wec.ifas.ufl.edu/people/wec-faculty/brett-scheffers/). Together with Dr Brunno Oliveira at Auburn University (USA) and collaborators at Massey University (New Zealand), we are investigating the global distribution of colourful passerines (songbirds). This work is ongoing so watch this space for updates, which of course will be exceptionally colourful and made in `R`.
 
-<img src="/img/pu_logo.png" alt="Princeton University logo", width = "40%", align = "left">
-<img src="/img/wws_logo.jpeg" alt="Woodrow Wilson School logo", width = "20%">
-<img src="/img/cpree_logo.png" alt="C-PREE logo", width = "40%", align = "left">
+<img src="/img/pu_logo.png" alt="Princeton University logo", width = "40%", align = "top">
+<img src="/img/wws_logo.jpeg" alt="Woodrow Wilson School logo", width = "20%", align = "right">
+<img src="/img/cpree_logo.png" alt="C-PREE logo", width = "40%", align = "bottom">
 
