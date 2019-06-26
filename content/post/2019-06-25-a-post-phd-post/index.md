@@ -18,7 +18,7 @@ In other news, the final two papers from my PhD have now been accepted for publi
 
 Earlier this year I was also priviliged to spend a couple of months at the University of Florida visiting [Dr Brett Scheffers](https://wec.ifas.ufl.edu/people/wec-faculty/brett-scheffers/). Together with Dr Brunno Oliveira at Auburn University (USA) and collaborators at Massey University (New Zealand), we are investigating the global distribution of colourful passerines (songbirds). This work is ongoing so watch this space for updates, which of course will be exceptionally colourful and made in `R`.
 
-<img src="arrival.png" alt="The Seniors have arrived (me, my brother and my mascot chihuahua, Ernie)", width = "40%", align = "left">
-<img src="office.jpeg" alt="My new office!", width = "20%", align = "left">
-<img src="florida.png" alt="Sweetwater Preserve in Gainesville, Florida", width = "40%", align = "right">
+<img src="arrival.jpg" alt="The Seniors have arrived (me, my brother and my mascot chihuahua, Ernie)", width = "40%", align = "left">
+<img src="office.jpg" alt="My new office!", width = "20%", align = "left">
+<img src="florida.jpg" alt="Sweetwater Preserve in Gainesville, Florida", width = "40%", align = "right">
 
