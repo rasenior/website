@@ -8,7 +8,7 @@ tags: []
 image:
   caption: ''
   focal_point: ''
-bibliography: [refs.bib]
+bibliography: [../../static/bib/refs.bib]
 link-citations: true
 ---
 
