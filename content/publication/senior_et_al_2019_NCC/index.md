@@ -65,10 +65,12 @@ math = true
 # To use, add an image named `featured.jpg/png` to your page's folder. 
 [image]
   # Caption (optional)
-  caption = "Image credit: **Rebecca A. Senior**"
+  caption = "Image credit: **David P. Edwards**"
 
   # Focal point (optional)
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-  focal_point = "Bottom"
+  focal_point = ""
 +++
+
+<img src="/publication/senior_et_al_2019_NCC/featured.png" alt="Climate connectivity maps", width = "100%", align = "centre">
 
