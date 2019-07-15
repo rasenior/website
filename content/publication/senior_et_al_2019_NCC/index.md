@@ -72,5 +72,5 @@ math = true
   focal_point = ""
 +++
 
-<img src="/publication/senior_et_al_2019_NCC/featured.png" alt="Climate connectivity maps", width = "100%", align = "centre">
+<img src="/post/2019-07-15-global-loss-of-climate-connectivity-in-tropical-forests/fig1.png" alt="Climate connectivity maps", width = "100%", align = "centre">
 
