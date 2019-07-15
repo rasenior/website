@@ -1,6 +1,6 @@
 +++
 title = "Global loss of climate connectivity in tropical forests"
-date = "2019-01-01"
+date = "2019-07-08"
 draft = false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
@@ -18,8 +18,8 @@ authors = ["**Rebecca A. Senior**", "Jane K. Hill", "David P. Edwards"]
 publication_types = ["2"]
 
 # Publication name and optional abbreviated version.
-publication = "*accepted for publication in* Nature Climate Change"
-publication_short = ""
+publication = "Nature Climate Change, https://doi.org/10.1038/s41558-019-0529-2"
+publication_short = "Nature Climate Change, https://doi.org/10.1038/s41558-019-0529-2"
 
 # Abstract and optional shortened version.
 abstract = ""
@@ -44,7 +44,7 @@ tags = ["connectivity", "climate change", "thermal ecology", "land-use change", 
 url_pdf = ""
 url_preprint = ""
 url_code = ""
-url_dataset = ""
+url_dataset = "https://figshare.shef.ac.uk/articles/Data_for_Global_loss_of_climate_connectivity_in_tropical_forests/8340578"
 url_project = ""
 url_slides = ""
 url_video = ""
@@ -69,6 +69,6 @@ math = true
 
   # Focal point (optional)
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-  focal_point = ""
+  focal_point = "Bottom"
 +++
 
