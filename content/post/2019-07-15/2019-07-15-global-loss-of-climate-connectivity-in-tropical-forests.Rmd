@@ -18,6 +18,8 @@ output:
     toc_depth: 1
 ---
 
+We had a new paper out last week in *Nature Climate Change* [@senior_global_2019], looking at the combined threats of forest loss and climate change in the tropics. 
+
 # What did we do?
 
 The work combines global layers of forest cover [@hansen_high-resolution_2013] with current and future mean annual temperature [@hijmans_very_2005], to assess how connected tropical forests are to cooler habitat. The thinking is that tropical forest species sensitive to climate change (which is thought to be many of them) will need to move towards the poles or -- more likely -- uphill, to stay within their current thermal niche as global temperatures rise. Unfortunately, movement across landscapes is made increasingly difficult for forest specialists by habitat loss and fragmentation.
