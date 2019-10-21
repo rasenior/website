@@ -18,9 +18,9 @@ output:
     toc_depth: 1
 ---
 
-![](/hexsticker.png)
+![](/post/2019-10-21/hexsticker.png)
 
-(Original post: https://methodsblog.com/2019/08/21/thermal-images-r/#more-7506)
+(Original post: https://methodsblog.com/2019/08/21/thermal-images-r/)
 
 # Why use thermal images?
 
@@ -28,13 +28,13 @@ Temperature is important in ecology. Rising global temperatures have pushed ecol
 
 Enter: the thermal camera. Unlike the tiny dataloggers that revolutionised thermal ecology in the past decade or so, thermal images capture surface temperature, not atmospheric temperature. Surface temperature may be as (if not more) relevant for organisms that are very small or flat, or thermoregulate via direct contact with the surface. Invertebrates and herps are two great examples of these types of organisms – and together make up a huge proportion of terrestrial biodiversity. Also, while dataloggers can achieve impressive temporal extent and resolution, they can't easily capture temperature variation in space.
 
-![_Surface temperature is important for small, flat things that don't float in the air at breast height_](RIMG0902.JPG) 
+![_Surface temperature is important for small, flat things that don't float in the air at breast height_](/post/2019-10-21/RIMG0902.JPG) 
 
 Like dataloggers, thermal cameras are becoming increasingly affordable and practical. The [FLIR One smartphone attachment](https://www.flir.co.uk/products/flir-one-gen-3/), for example, weighs in at 34.5 g and costs around ~US$300. For that, you get 4,800 spatially explicit temperature measurements at the click of a button. But without guidelines and tools, the eager thermal photographer runs the risk of accumulating thousands of images with no idea of what to do with them. So we created the  `R` package `ThermStats`. This package simplifies the processing of data from FLIR thermal images and facilitates analyses of other gridded temperature data too.
 
 # What do I with all these images?
 
-![_Too many images and no idea how to use them?_](/FLIR8561.JPG) 
+![_Too many images and no idea how to use them?_](/post/2019-10-21/FLIR8561.JPG) 
 
 To start, it's important to understand what a thermal camera actually measures. Each pixel in a FLIR thermal image has an embedded 16-bit value that represents the infrared radiation received by the sensor. What we want is the portion of that received radiation that was emitted by the object or scene of interest, because this is a function of its temperature.
 
@@ -105,7 +105,7 @@ Both `get_stats` and `stats_by_group` can also return:
 * the temperature dataset(s) in a dataframe format
 * `SpatialPolygonsDataFrame`(s) of hot and cold spots.
 
-```{r fig-1, fig.cap= "The output of `plot_patches` includes a histogram and the original temperature data overlaid with outlines of hot and cold spots, identified using the G* variant of the Getis-Ord local statistic.", echo = FALSE}
+```{r fig-1, fig.cap= "The output of `plot_patches` includes a histogram and the original temperature data overlaid with outlines of hot and cold spots, identified using the G* variant of the Getis-Ord local statistic.", echo = FALSE, include = FALSE}
 plot_patches(
     # The raw temperature data
     df = flir_stats$df,
@@ -133,7 +133,7 @@ plot_stack(img_stack = flir_stack,
 
 We welcome feedback and suggested enhancements, which you can submit as an issue to [GitHub](https://github.com/rasenior/ThermStats/issues). I'd particularly like to implement processing of thermal images from other models of camera, but we currently only have access to FLIR images. Another obvious next step is testing out the biological relevance of our suggested thermal metrics. I'd be keen to hear from anyone who is interested in pursuing this!
 
-![_A bright future for thermal ecology_](/FLIR8563.JPG) 
+![_A bright future for thermal ecology_](/post/2019-10-21/FLIR8563.JPG) 
 
 __To find out more about what you can do using ThermStats, read our Methods in Ecology and Evolution article ['ThermStats: An R package for quantifying surface thermal heterogeneity in assessments of microclimates'](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13257)__
 
