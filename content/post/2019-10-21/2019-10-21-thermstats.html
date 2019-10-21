@@ -3,7 +3,7 @@ title: Thermal images in R
 author: ''
 date: '2019-10-21'
 slug: global-loss-of-climate-connectivity-in-tropical-forests
-categories: [PhD]
+categories: []
 tags: [thermal ecology, thermography, R]
 image:
   caption: ''
@@ -24,12 +24,11 @@ output:
 <li><a href="#why-use-thermal-images"><span class="toc-section-number">1</span> Why use thermal images?</a></li>
 <li><a href="#what-do-i-with-all-these-images"><span class="toc-section-number">2</span> What do I with all these images?</a></li>
 <li><a href="#the-future"><span class="toc-section-number">3</span> The Future</a></li>
-<li><a href="#references"><span class="toc-section-number">4</span> References</a></li>
 </ul>
 </div>
 
-<p><img src="hexsticker.png" /></p>
-<p>(Original post here: <a href="https://methodsblog.com/2019/08/21/thermal-images-r/#more-7506" class="uri">https://methodsblog.com/2019/08/21/thermal-images-r/#more-7506</a>)</p>
+<p><img src="/hexsticker.png" /></p>
+<p>(Original post: <a href="https://methodsblog.com/2019/08/21/thermal-images-r/#more-7506" class="uri">https://methodsblog.com/2019/08/21/thermal-images-r/#more-7506</a>)</p>
 <div id="why-use-thermal-images" class="section level1">
 <h1><span class="header-section-number">1</span> Why use thermal images?</h1>
 <p>Temperature is important in ecology. Rising global temperatures have pushed ecologists and conservationists to better understand how temperature influences species’ risk of extinction under climate change. There’s been an increasing drive to measure temperature at the scale that individual organisms actually experience it. This is made possible by advances in technology.</p>
@@ -43,7 +42,7 @@ output:
 <div id="what-do-i-with-all-these-images" class="section level1">
 <h1><span class="header-section-number">2</span> What do I with all these images?</h1>
 <div class="figure">
-<img src="FLIR8561.jpg" alt="Too many images and no idea how to use them?" />
+<img src="/FLIR8561.JPG" alt="Too many images and no idea how to use them?" />
 <p class="caption"><em>Too many images and no idea how to use them?</em></p>
 </div>
 <p>To start, it’s important to understand what a thermal camera actually measures. Each pixel in a FLIR thermal image has an embedded 16-bit value that represents the infrared radiation received by the sensor. What we want is the portion of that received radiation that was emitted by the object or scene of interest, because this is a function of its temperature.</p>
@@ -75,13 +74,6 @@ output:
 <li>the temperature dataset(s) in a dataframe format</li>
 <li><code>SpatialPolygonsDataFrame</code>(s) of hot and cold spots.</li>
 </ul>
-<pre class="r"><code>plot_patches(
-    # The raw temperature data
-    df = flir_stats$df,
-    # The patch outlines
-    patches = flir_stats$patches, 
-    # Add hatching
-    hatching = TRUE)</code></pre>
 <pre><code>## Plotting distribution</code></pre>
 <pre><code>## Plotting image with hot and cold spots</code></pre>
 <div class="figure"><span id="fig:fig-1"></span>
@@ -92,13 +84,6 @@ Figure 2.1: The output of <code>plot_patches</code> includes a histogram and the
 </div>
 <p>The function plot_patches plots the temperature raster(s) overlaid with outlines of hot and cold spots, plus the temperature histogram if <code>plot_distribution = TRUE</code>.</p>
 <p>A single temperature matrix can be converted to a <code>RasterLayer</code> using <code>raster::raster()</code>. A list of matrices (such as that returned by <code>batch_convert</code>) can be converted to a <code>RasterStack</code> using <code>stack_imgs</code>. Both RasterLayer and RasterStack objects can explored using the package <a href="https://oscarperpinan.github.io/rastervis/"><code>rasterVis</code></a>. Another option is to create violin plots of raster stacks using <code>plot_stack</code>, and consider the new package <a href="https://r-spatialecology.github.io/landscapemetrics/index.html"><code>landscapemetrics</code></a> for <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04617">analysing and displaying hot and cold spots</a>.</p>
-<pre class="r"><code>plot_stack(img_stack = flir_stack, 
-           n = 100,
-           print_plot = TRUE,
-           save_plot = FALSE,
-           xlabel = &quot;Time&quot;,
-           ylabel = &quot;Temperature&quot;,
-           y_breaks = seq(25, 35, 1))</code></pre>
 <div class="figure"><span id="fig:fig-2"></span>
 <img src="/post/2019-10-21/2019-10-21-thermstats_files/figure-html/fig-2-1.png" alt="Violin plots created using `plot_stack`. Each datapoint is a single pixel, from the 100 pixels sampled at random from each raster. Rasters derive from thermal images collected every 20 minutes in the same location." width="672" />
 <p class="caption">
@@ -111,13 +96,10 @@ Figure 2.2: Violin plots created using <code>plot_stack</code>. Each datapoint i
 <h1><span class="header-section-number">3</span> The Future</h1>
 <p>We welcome feedback and suggested enhancements, which you can submit as an issue to <a href="https://github.com/rasenior/ThermStats/issues">GitHub</a>. I’d particularly like to implement processing of thermal images from other models of camera, but we currently only have access to FLIR images. Another obvious next step is testing out the biological relevance of our suggested thermal metrics. I’d be keen to hear from anyone who is interested in pursuing this!</p>
 <div class="figure">
-<img src="FLIR8563.jpg" alt="A bright future for thermal ecology" />
+<img src="/FLIR8563.JPG" alt="A bright future for thermal ecology" />
 <p class="caption"><em>A bright future for thermal ecology</em></p>
 </div>
 <p><strong>To find out more about what you can do using ThermStats, read our Methods in Ecology and Evolution article <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13257">‘ThermStats: An R package for quantifying surface thermal heterogeneity in assessments of microclimates’</a></strong></p>
 <hr />
 <p>This is work I did as part of my PhD, with <a href="http://www.edwardslab.group.shef.ac.uk/">Prof David Edwards</a> (University of Sheffield) and <a href="https://www.york.ac.uk/biology/research/ecology-evolution/kane-k-hill/#tab-1">Prof Jane Hill</a> (University of York). I was funded by <a href="https://acce.shef.ac.uk/">ACCE</a> (Adapting to the Challenges of a Changing Environment), which is a <a href="https://nerc.ukri.org/">NERC</a> (Natural Environment Research Council) Doctoral Training Partnership.</p>
-</div>
-<div id="references" class="section level1">
-<h1><span class="header-section-number">4</span> References</h1>
 </div>
