@@ -18,7 +18,7 @@ output:
     toc_depth: 1
 ---
 
-<img src="/post/2019-10-21/hexsticker.png" alt="ThermStats logo", width = "40%", align = "right">
+<!-- <img src="/post/2019-10-21/hexsticker.png" alt="ThermStats logo", width = "40%", align = "right"> -->
 
 (Original post: https://methodsblog.com/2019/08/21/thermal-images-r/)
 
