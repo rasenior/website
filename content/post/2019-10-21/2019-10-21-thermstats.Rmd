@@ -1,33 +1,21 @@
 ---
-title: "Thermal images in R"
+title: Thermal images in R
 author: ''
 date: '2019-10-21'
-output:
-  word_document:
-    toc: yes
-    toc_depth: '2'
-  html_document:
-    df_print: paged
-    toc: yes
-    toc_depth: '2'
-  blogdown::html_page:
-    number_sections: no
-    toc: yes
-    toc_depth: 2
+slug: global-loss-of-climate-connectivity-in-tropical-forests
+categories: [PhD]
+tags: [thermal ecology, thermography, R]
 image:
   caption: ''
   focal_point: ''
-link-citations: yes
-categories: []
-slug: thermal-images-r
+bibliography: [refs.bib]
+link-citations: true
 summary: How to extract & process thermal images in `R` using `ThermStats`
-tags:
-- thermography
-- thermal ecology
-- microclimates
-- temperature
-- R package
-bibliography: refs.bib
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 1
 ---
 
 ![](hexsticker.png)
