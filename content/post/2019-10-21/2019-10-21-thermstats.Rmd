@@ -52,26 +52,26 @@ photo_index <- match(names(flir_raw$raw_dat),
                      flir_metadata$photo_no)
 # Batch convert
 flir_converted <-
-    batch_convert(
-        raw_dat = flir_raw$raw_dat,
-        # Emissivity = mean of range in Scheffers et al. 2017
-        E = mean(c(0.982,0.99)),
-        # Object distance (m)
-        OD = 1,
-        # Apparent reflected temperature & atmospheric temperature =
-        # atmospheric temperature measured in the field
-        RTemp = metadata$atm_temp[photo_index],
-        ATemp = metadata$atm_temp[photo_index],
-        # Relative humidity = relative humidity measured in the field
-        RH = metadata$rel_humidity[photo_index],
-        # Calibration constants from 'batch_extract'
-        PR1 = flir_raw$camera_params$PlanckR1,
-        PB = flir_raw$camera_params$PlanckB,
-        PF = flir_raw$camera_params$PlanckF,
-        PO = flir_raw$camera_params$PlanckO,
-        PR2 = flir_raw$camera_params$PlanckR2,
-        # Whether to write results or just return
-        write_results = FALSE)
+  batch_convert(
+    raw_dat = flir_raw$raw_dat,
+    # Emissivity = mean of range in Scheffers et al. 2017
+    E = mean(c(0.982,0.99)),
+    # Object distance (m)
+    OD = 1,
+    # Apparent reflected temperature & atmospheric temperature =
+    # atmospheric temperature measured in the field
+    RTemp = metadata$atm_temp[photo_index],
+    ATemp = metadata$atm_temp[photo_index],
+    # Relative humidity = relative humidity measured in the field
+    RH = metadata$rel_humidity[photo_index],
+    # Calibration constants from 'batch_extract'
+    PR1 = flir_raw$camera_params$PlanckR1,
+    PB = flir_raw$camera_params$PlanckB,
+    PF = flir_raw$camera_params$PlanckF,
+    PO = flir_raw$camera_params$PlanckO,
+    PR2 = flir_raw$camera_params$PlanckR2,
+    # Whether to write results or just return
+    write_results = FALSE)
 ```
 
 We need to convert the raw data to a temperature in &deg;C using [equations from infrared thermography](https://cran.r-project.org/package=Thermimage) (for information on how to extract this data, section 2.2 of ['ThermStats: An R package for quantifying surface thermal heterogeneity in assessments of microclimates'](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13257)). A few parameters are needed for this, including some that you should either measure or estimate:
@@ -81,7 +81,7 @@ We need to convert the raw data to a temperature in &deg;C using [equations from
 3. Object distance = the distance between the camera and the object of interest.
 4. Atmospheric temperature = the temperature of the atmosphere.
 5. Relative humidity = the relative humidity of the atmosphere.
-  
+
 The first two items on this list are difficult to [measure in the field](https://flir.custhelp.com/app/account/fl_download_manuals/session/L3RpbWUvMTU2NTc5Mzc0Ni9nZW4vMTU2NTc5Mzc0Ni9zaWQvZlU4QV9waUslN0VkTUJlYWRxRGo1NWVZV01BbCU3RUpaOHNVJTdFblp2UkxvX0FzY3NTWDlKY09rck9UQXRFTnJyOUxpS0VzUDRWNjgyblRhbzhZVXlaRXl1czU3cHlrQ243aDZMS1hQdjFBZnpVUjEwMzJveTcyJTdFRlVoYlElMjElMjE=). Emissivity is likely to range between 0.92 (for dry, bare soil) and 0.99 (for [green broadleaf forest](https://www.tandfonline.com/doi/abs/10.1080/014311698214497)). For high emissivities and short object distances, apparent temperature can be assumed to [equal the atmospheric temperature](https://www.sciencedirect.com/science/article/pii/S1095643316300435?via%3Dihub).
 
 ## Thermal metrics
@@ -107,12 +107,12 @@ Both `get_stats` and `stats_by_group` can also return:
 
 ```{r fig-1, fig.cap= "The output of `plot_patches` includes a histogram and the original temperature data overlaid with outlines of hot and cold spots, identified using the G* variant of the Getis-Ord local statistic.", echo = FALSE}
 plot_patches(
-    # The raw temperature data
-    df = flir_stats$df,
-    # The patch outlines
-    patches = flir_stats$patches, 
-    # Add hatching
-    hatching = TRUE)
+  # The raw temperature data
+  df = flir_stats$df,
+  # The patch outlines
+  patches = flir_stats$patches, 
+  # Add hatching
+  hatching = TRUE)
 ```
 
 The function `plot_patches` plots the temperature raster(s) overlaid with outlines of hot and cold spots, plus the temperature histogram if `plot_distribution = TRUE`.
@@ -120,13 +120,14 @@ The function `plot_patches` plots the temperature raster(s) overlaid with outlin
 A single temperature matrix can be converted to a `RasterLayer` using `raster::raster()`. A list of matrices (such as that returned by `batch_convert`) can be converted to a `RasterStack` using `stack_imgs`. Both RasterLayer and RasterStack objects can explored using the package [`rasterVis`](https://oscarperpinan.github.io/rastervis/). Another option is to create violin plots of raster stacks using `plot_stack`, and consider the new package [`landscapemetrics`](https://r-spatialecology.github.io/landscapemetrics/index.html) for [analysing and displaying hot and cold spots](https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04617).
 
 ```{r fig-2, fig.cap= "Violin plots created using `plot_stack`. Each datapoint is a single pixel, from the 100 pixels sampled at random from each raster. Rasters derive from thermal images collected every 20 minutes in the same location.", echo = FALSE}
-plot_stack(img_stack = flir_stack, 
-           n = 100,
-           print_plot = TRUE,
-           save_plot = FALSE,
-           xlabel = "Time",
-           ylabel = "Temperature",
-           y_breaks = seq(25, 35, 1))
+suppressMessages(
+  plot_stack(img_stack = flir_stack, 
+             n = 100,
+             print_plot = TRUE,
+             save_plot = FALSE,
+             xlabel = "Time",
+             ylabel = "Temperature",
+             y_breaks = seq(25, 35, 1)))
 ```
 
 # The Future
