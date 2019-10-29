@@ -74,12 +74,20 @@ output:
 <li>the temperature dataset(s) in a dataframe format</li>
 <li><code>SpatialPolygonsDataFrame</code>(s) of hot and cold spots.</li>
 </ul>
-<p>The function plot_patches plots the temperature raster(s) overlaid with outlines of hot and cold spots, plus the temperature histogram if <code>plot_distribution = TRUE</code>.</p>
+<pre><code>## Plotting distribution</code></pre>
+<pre><code>## Plotting image with hot and cold spots</code></pre>
+<div class="figure"><span id="fig:fig-1"></span>
+<img src="/post/2019-10-21/2019-10-21-thermstats_files/figure-html/fig-1-1.png" alt="The output of `plot_patches` includes a histogram and the original temperature data overlaid with outlines of hot and cold spots, identified using the G* variant of the Getis-Ord local statistic." width="672" />
+<p class="caption">
+Figure 2.1: The output of <code>plot_patches</code> includes a histogram and the original temperature data overlaid with outlines of hot and cold spots, identified using the G* variant of the Getis-Ord local statistic.
+</p>
+</div>
+<p>The function <code>plot_patches</code> plots the temperature raster(s) overlaid with outlines of hot and cold spots, plus the temperature histogram if <code>plot_distribution = TRUE</code>.</p>
 <p>A single temperature matrix can be converted to a <code>RasterLayer</code> using <code>raster::raster()</code>. A list of matrices (such as that returned by <code>batch_convert</code>) can be converted to a <code>RasterStack</code> using <code>stack_imgs</code>. Both RasterLayer and RasterStack objects can explored using the package <a href="https://oscarperpinan.github.io/rastervis/"><code>rasterVis</code></a>. Another option is to create violin plots of raster stacks using <code>plot_stack</code>, and consider the new package <a href="https://r-spatialecology.github.io/landscapemetrics/index.html"><code>landscapemetrics</code></a> for <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04617">analysing and displaying hot and cold spots</a>.</p>
 <div class="figure"><span id="fig:fig-2"></span>
 <img src="/post/2019-10-21/2019-10-21-thermstats_files/figure-html/fig-2-1.png" alt="Violin plots created using `plot_stack`. Each datapoint is a single pixel, from the 100 pixels sampled at random from each raster. Rasters derive from thermal images collected every 20 minutes in the same location." width="672" />
 <p class="caption">
-Figure 2.1: Violin plots created using <code>plot_stack</code>. Each datapoint is a single pixel, from the 100 pixels sampled at random from each raster. Rasters derive from thermal images collected every 20 minutes in the same location.
+Figure 2.2: Violin plots created using <code>plot_stack</code>. Each datapoint is a single pixel, from the 100 pixels sampled at random from each raster. Rasters derive from thermal images collected every 20 minutes in the same location.
 </p>
 </div>
 </div>

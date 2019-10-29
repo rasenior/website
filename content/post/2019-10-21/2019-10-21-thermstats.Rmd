@@ -105,7 +105,7 @@ Both `get_stats` and `stats_by_group` can also return:
 * the temperature dataset(s) in a dataframe format
 * `SpatialPolygonsDataFrame`(s) of hot and cold spots.
 
-```{r fig-1, fig.cap= "The output of `plot_patches` includes a histogram and the original temperature data overlaid with outlines of hot and cold spots, identified using the G* variant of the Getis-Ord local statistic.", echo = FALSE, include = FALSE}
+```{r fig-1, fig.cap= "The output of `plot_patches` includes a histogram and the original temperature data overlaid with outlines of hot and cold spots, identified using the G* variant of the Getis-Ord local statistic.", echo = FALSE}
 plot_patches(
     # The raw temperature data
     df = flir_stats$df,
@@ -115,7 +115,7 @@ plot_patches(
     hatching = TRUE)
 ```
 
-The function plot_patches plots the temperature raster(s) overlaid with outlines of hot and cold spots, plus the temperature histogram if `plot_distribution = TRUE`.
+The function `plot_patches` plots the temperature raster(s) overlaid with outlines of hot and cold spots, plus the temperature histogram if `plot_distribution = TRUE`.
 
 A single temperature matrix can be converted to a `RasterLayer` using `raster::raster()`. A list of matrices (such as that returned by `batch_convert`) can be converted to a `RasterStack` using `stack_imgs`. Both RasterLayer and RasterStack objects can explored using the package [`rasterVis`](https://oscarperpinan.github.io/rastervis/). Another option is to create violin plots of raster stacks using `plot_stack`, and consider the new package [`landscapemetrics`](https://r-spatialecology.github.io/landscapemetrics/index.html) for [analysing and displaying hot and cold spots](https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04617).
 
