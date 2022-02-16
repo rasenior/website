@@ -31,7 +31,7 @@ weight = 5
 +++
 I am a **conservation biologist** interested in exploring ecological patterns across scales to inform pragmatic and adaptable conservation practices. I have a particular interest in using advances in **technology and open data** to tackle difficult questions. I'm an avid [<i class="fab fa-r-project"></i>](https://www.r-project.org/) user, and you can follow my current work on GitHub [<i class="fab fa-github-alt"></i>](https://github.com/rasenior).
 
-In 2022 I joined the Department of Biosciences at Durham University (UK) as an Assistant Professor of Ecology. Watch this space for upcoming opportunities to join my lab!
+I recently joined the Department of Biosciences at **Durham University** (UK) as an Assistant Professor of Ecology. Watch this space for upcoming opportunities to **work with me**!
 
 Before joining Durham University, I was a Postdoctoral Research Associate in the Center for Policy Research on Energy and the Environment (C-PREE) at Princeton University (USA), working with [Prof David Wilcove](https://scholar.princeton.edu/dwilcove/meet-team) to assess the **effectiveness of different conservation strategies** for recovering threatened species. 
 
