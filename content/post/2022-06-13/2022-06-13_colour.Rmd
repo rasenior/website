@@ -1,0 +1,147 @@
+---
+title: The price of colour
+author: ''
+date: '2022-06-13'
+categories: []
+tags: [R, conservation, wildlife trade, colour]
+image:
+  caption: ''
+  focal_point: ''
+runtime: shiny
+bibliography: [refs.bib]
+link-citations: true
+summary: Exploring the role of plumage colour in the global bird trade
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 1
+---
+
+# People like colour
+
+* lots of examples of people's love of colour
+* what people love is important because it influences what they want to see, protect, and own
+* these forces can be at odds with each other
+
+![_Surface temperature is important for small, flat things that don't float in the air at breast height_](/post/2019-10-21/RIMG0902.JPG) 
+
+# Not just about song in songbirds...
+
+![_Too many images and no idea how to use them?_](/post/2019-10-21/FLIR8561.JPG) 
+
+* many songbirds are traded for their song
+* but, many are also very colourful!
+
+# How do we even measure colour?
+
+* it's hard to measure colour in a way that is intuitively meaningful to humans
+* there are many different components to how we see things, and how we value what we see
+* and all of this is going to be very subjective, and probably varies between regions and cultures
+* it's also hard to visualise colour, because standard ways of measuring colour are multidimensional
+
+<iframe height="800" width="100%" frameborder="no" src="https://rasenior.shinyapps.io/stockvis/"> </iframe>
+
+## Extracting the data
+
+```{r load-thermstats, include = FALSE}
+library(ThermStats)
+```
+
+```{r batch-convert, echo = FALSE, results = "hide"}
+# Define metadata (example metadata included with package installation)
+metadata <- flir_metadata
+# Create vector denoting the position of each photo within metadata
+photo_index <- match(names(flir_raw$raw_dat), 
+                     flir_metadata$photo_no)
+# Batch convert
+flir_converted <-
+  batch_convert(
+    raw_dat = flir_raw$raw_dat,
+    # Emissivity = mean of range in Scheffers et al. 2017
+    E = mean(c(0.982,0.99)),
+    # Object distance (m)
+    OD = 1,
+    # Apparent reflected temperature & atmospheric temperature =
+    # atmospheric temperature measured in the field
+    RTemp = metadata$atm_temp[photo_index],
+    ATemp = metadata$atm_temp[photo_index],
+    # Relative humidity = relative humidity measured in the field
+    RH = metadata$rel_humidity[photo_index],
+    # Calibration constants from 'batch_extract'
+    PR1 = flir_raw$camera_params$PlanckR1,
+    PB = flir_raw$camera_params$PlanckB,
+    PF = flir_raw$camera_params$PlanckF,
+    PO = flir_raw$camera_params$PlanckO,
+    PR2 = flir_raw$camera_params$PlanckR2,
+    # Whether to write results or just return
+    write_results = FALSE)
+```
+
+We need to convert the raw data to a temperature in &deg;C using [equations from infrared thermography](https://cran.r-project.org/package=Thermimage) (for information on how to extract this data, section 2.2 of ['ThermStats: An R package for quantifying surface thermal heterogeneity in assessments of microclimates'](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13257)). A few parameters are needed for this, including some that you should either measure or estimate:
+
+1. Emissivity = the amount of radiation emitted by a particular object, for a given temperature.
+2. Reflected apparent temperature = radiation that originates from other objects and is reflected by the object of interest.
+3. Object distance = the distance between the camera and the object of interest.
+4. Atmospheric temperature = the temperature of the atmosphere.
+5. Relative humidity = the relative humidity of the atmosphere.
+
+The first two items on this list are difficult to [measure in the field](https://flir.custhelp.com/app/account/fl_download_manuals/session/L3RpbWUvMTU2NTc5Mzc0Ni9nZW4vMTU2NTc5Mzc0Ni9zaWQvZlU4QV9waUslN0VkTUJlYWRxRGo1NWVZV01BbCU3RUpaOHNVJTdFblp2UkxvX0FzY3NTWDlKY09rck9UQXRFTnJyOUxpS0VzUDRWNjgyblRhbzhZVXlaRXl1czU3cHlrQ243aDZMS1hQdjFBZnpVUjEwMzJveTcyJTdFRlVoYlElMjElMjE=). Emissivity is likely to range between 0.92 (for dry, bare soil) and 0.99 (for [green broadleaf forest](https://www.tandfonline.com/doi/abs/10.1080/014311698214497)). For high emissivities and short object distances, apparent temperature can be assumed to [equal the atmospheric temperature](https://www.sciencedirect.com/science/article/pii/S1095643316300435?via%3Dihub).
+
+## Thermal metrics
+
+We can calculate simple summary statistics at this point (mean, min, max etc.). But if that was all we wanted, we might as well use the trusty (and much cheaper) thermometer! The beauty of thermal images is their ability to capture temperature variation across space.
+
+If we imagine that unique temperature values (at a given precision) are like species, we can use [diversity indices to quantify thermal diversity](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12488). You might expect that more thermally diverse habitats would provide species with more opportunities for behavioural thermoregulation, for example. This has been [suggested by some studies](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2435.12288), but there remains much work to be done in this area.
+
+We can also view a thermal image as a raster, akin to a land cover map. When we do this, clusters of pixels with a similar temperature are the equivalent of habitat patches. By borrowing techniques from landscape ecology -- such as [hot spot analysis](https://books.google.co.uk/books?id=1DCq7fg_0QcC&printsec=frontcover#v=onepage&q&f=false) -- we can explore ideas like thermal connectivity and thermal fragmentation. This applies to thermal images and to coarser gridded temperature data.
+
+There are two key functions for calculating thermal metrics. For a single thermal dataset, use `get_stats`, specifying your desired summary statistics and whether or not you want to (1) calculate connectivity and (2) identify hot and cold patches.
+
+Alternatively, if you have multiple images within a specified grouping (e.g. one photo in each cardinal direction for multiple study plots; [Senior et al. 2018](https://doi.org/10.1111/gcb.13914); [Scheffers et al. 2017](https://onlinelibrary.wiley.com/doi/abs/10.1111/btp.12355)), you can use `stats_by_group`. Many of the arguments are the same, but this function additionally allows you to define the grouping of the images.
+
+By default, both `get_stats` and `stats_by_group` return a dataframe with patch statistics for each image or group, respectively.
+
+## Plotting
+
+Both `get_stats` and `stats_by_group` can also return:
+
+* the temperature dataset(s) in a dataframe format
+* `SpatialPolygonsDataFrame`(s) of hot and cold spots.
+
+```{r fig-1, fig.cap= "The output of `plot_patches` includes a histogram and the original temperature data overlaid with outlines of hot and cold spots, identified using the G* variant of the Getis-Ord local statistic.", echo = FALSE}
+plot_patches(
+  # The raw temperature data
+  df = flir_stats$df,
+  # The patch outlines
+  patches = flir_stats$patches, 
+  # Add hatching
+  hatching = TRUE)
+```
+
+The function `plot_patches` plots the temperature raster(s) overlaid with outlines of hot and cold spots, plus the temperature histogram if `plot_distribution = TRUE`.
+
+A single temperature matrix can be converted to a `RasterLayer` using `raster::raster()`. A list of matrices (such as that returned by `batch_convert`) can be converted to a `RasterStack` using `stack_imgs`. Both RasterLayer and RasterStack objects can explored using the package [`rasterVis`](https://oscarperpinan.github.io/rastervis/). Another option is to create violin plots of raster stacks using `plot_stack`, and consider the new package [`landscapemetrics`](https://r-spatialecology.github.io/landscapemetrics/index.html) for [analysing and displaying hot and cold spots](https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04617).
+
+```{r fig-2, fig.cap= "Violin plots created using `plot_stack`. Each datapoint is a single pixel, from the 100 pixels sampled at random from each raster. Rasters derive from thermal images collected every 20 minutes in the same location.", echo = FALSE}
+suppressMessages(
+  plot_stack(img_stack = flir_stack, 
+             n = 100,
+             print_plot = TRUE,
+             save_plot = FALSE,
+             xlabel = "Time",
+             ylabel = "Temperature",
+             y_breaks = seq(25, 35, 1)))
+```
+
+# The Future
+
+We welcome feedback and suggested enhancements, which you can submit as an issue to [GitHub](https://github.com/rasenior/ThermStats/issues). I'd particularly like to implement processing of thermal images from other models of camera, but we currently only have access to FLIR images. Another obvious next step is testing out the biological relevance of our suggested thermal metrics. I'd be keen to hear from anyone who is interested in pursuing this!
+
+![_A bright future for thermal ecology_](/post/2019-10-21/FLIR8563.JPG) 
+
+__To find out more about what you can do using ThermStats, read our Methods in Ecology and Evolution article ['ThermStats: An R package for quantifying surface thermal heterogeneity in assessments of microclimates'](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13257)__
+
+_______________________________________
+
+This is work I did as part of my PhD, with [Prof David Edwards](http://www.edwardslab.group.shef.ac.uk/) (University of Sheffield) and [Prof Jane Hill](https://www.york.ac.uk/biology/research/ecology-evolution/kane-k-hill/#tab-1) (University of York). I was funded by [ACCE](https://acce.shef.ac.uk/) (Adapting to the Challenges of a Changing Environment), which is a [NERC](https://nerc.ukri.org/) (Natural Environment Research Council) Doctoral Training Partnership. 
