@@ -40,7 +40,9 @@ output:
 * and all of this is going to be very subjective, and probably varies between regions and cultures
 * it's also hard to visualise colour, because standard ways of measuring colour are multidimensional
 
+```
 <iframe height="800" width="100%" frameborder="no" src="https://rasenior.shinyapps.io/stockvis/"> </iframe>
+```
 
 ## Extracting the data
 

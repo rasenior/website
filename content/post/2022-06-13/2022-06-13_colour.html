@@ -2,12 +2,12 @@
 title: The price of colour
 author: ''
 date: '2022-06-13'
-slug: 
 categories: []
 tags: [R, conservation, wildlife trade, colour]
 image:
   caption: ''
   focal_point: ''
+runtime: shiny
 bibliography: [refs.bib]
 link-citations: true
 summary: Exploring the role of plumage colour in the global bird trade
@@ -18,18 +18,17 @@ output:
     toc_depth: 1
 ---
 
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 <div id="TOC">
 <ul>
-<li><a href="#people-like-colour"><span class="toc-section-number">1</span> People like colour</a></li>
-<li><a href="#not-just-about-song-in-songbirds"><span class="toc-section-number">2</span> Not just about song in songbirds…</a></li>
-<li><a href="#how-do-we-even-measure-colour"><span class="toc-section-number">3</span> How do we even measure colour?</a></li>
-<li><a href="#the-future"><span class="toc-section-number">4</span> The Future</a></li>
+<li><a href="#section-people-like-colour"><span class="toc-section-number">1</span> People like colour</a></li>
+<li><a href="#section-not-just-about-song-in-songbirds"><span class="toc-section-number">2</span> Not just about song in songbirds…</a></li>
+<li><a href="#section-how-do-we-even-measure-colour"><span class="toc-section-number">3</span> How do we even measure colour?</a></li>
+<li><a href="#section-the-future"><span class="toc-section-number">4</span> The Future</a></li>
 </ul>
 </div>
 
-<div id="people-like-colour" class="section level1" number="1">
+<div id="section-people-like-colour" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> People like colour</h1>
 <ul>
 <li>lots of examples of people’s love of colour</li>
@@ -41,7 +40,7 @@ output:
 <p class="caption"><em>Surface temperature is important for small, flat things that don’t float in the air at breast height</em></p>
 </div>
 </div>
-<div id="not-just-about-song-in-songbirds" class="section level1" number="2">
+<div id="section-not-just-about-song-in-songbirds" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Not just about song in songbirds…</h1>
 <div class="figure">
 <img src="/post/2019-10-21/FLIR8561.JPG" alt="" />
@@ -52,7 +51,7 @@ output:
 <li>but, many are also very colourful!</li>
 </ul>
 </div>
-<div id="how-do-we-even-measure-colour" class="section level1" number="3">
+<div id="section-how-do-we-even-measure-colour" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> How do we even measure colour?</h1>
 <ul>
 <li>it’s hard to measure colour in a way that is intuitively meaningful to humans</li>
@@ -60,7 +59,8 @@ output:
 <li>and all of this is going to be very subjective, and probably varies between regions and cultures</li>
 <li>it’s also hard to visualise colour, because standard ways of measuring colour are multidimensional</li>
 </ul>
-<div id="extracting-the-data" class="section level2" number="3.1">
+<pre><code>&lt;iframe height=&quot;800&quot; width=&quot;100%&quot; frameborder=&quot;no&quot; src=&quot;https://rasenior.shinyapps.io/stockvis/&quot;&gt; &lt;/iframe&gt;</code></pre>
+<div id="section-extracting-the-data" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Extracting the data</h2>
 <p>We need to convert the raw data to a temperature in °C using <a href="https://cran.r-project.org/package=Thermimage">equations from infrared thermography</a> (for information on how to extract this data, section 2.2 of <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13257">‘ThermStats: An R package for quantifying surface thermal heterogeneity in assessments of microclimates’</a>). A few parameters are needed for this, including some that you should either measure or estimate:</p>
 <ol style="list-style-type: decimal">
@@ -72,7 +72,7 @@ output:
 </ol>
 <p>The first two items on this list are difficult to <a href="https://flir.custhelp.com/app/account/fl_download_manuals/session/L3RpbWUvMTU2NTc5Mzc0Ni9nZW4vMTU2NTc5Mzc0Ni9zaWQvZlU4QV9waUslN0VkTUJlYWRxRGo1NWVZV01BbCU3RUpaOHNVJTdFblp2UkxvX0FzY3NTWDlKY09rck9UQXRFTnJyOUxpS0VzUDRWNjgyblRhbzhZVXlaRXl1czU3cHlrQ243aDZMS1hQdjFBZnpVUjEwMzJveTcyJTdFRlVoYlElMjElMjE=">measure in the field</a>. Emissivity is likely to range between 0.92 (for dry, bare soil) and 0.99 (for <a href="https://www.tandfonline.com/doi/abs/10.1080/014311698214497">green broadleaf forest</a>). For high emissivities and short object distances, apparent temperature can be assumed to <a href="https://www.sciencedirect.com/science/article/pii/S1095643316300435?via%3Dihub">equal the atmospheric temperature</a>.</p>
 </div>
-<div id="thermal-metrics" class="section level2" number="3.2">
+<div id="section-thermal-metrics" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Thermal metrics</h2>
 <p>We can calculate simple summary statistics at this point (mean, min, max etc.). But if that was all we wanted, we might as well use the trusty (and much cheaper) thermometer! The beauty of thermal images is their ability to capture temperature variation across space.</p>
 <p>If we imagine that unique temperature values (at a given precision) are like species, we can use <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12488">diversity indices to quantify thermal diversity</a>. You might expect that more thermally diverse habitats would provide species with more opportunities for behavioural thermoregulation, for example. This has been <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2435.12288">suggested by some studies</a>, but there remains much work to be done in this area.</p>
@@ -81,7 +81,7 @@ output:
 <p>Alternatively, if you have multiple images within a specified grouping (e.g. one photo in each cardinal direction for multiple study plots; <a href="https://doi.org/10.1111/gcb.13914">Senior et al. 2018</a>; <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/btp.12355">Scheffers et al. 2017</a>), you can use <code>stats_by_group</code>. Many of the arguments are the same, but this function additionally allows you to define the grouping of the images.</p>
 <p>By default, both <code>get_stats</code> and <code>stats_by_group</code> return a dataframe with patch statistics for each image or group, respectively.</p>
 </div>
-<div id="plotting" class="section level2" number="3.3">
+<div id="section-plotting" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Plotting</h2>
 <p>Both <code>get_stats</code> and <code>stats_by_group</code> can also return:</p>
 <ul>
@@ -98,13 +98,6 @@ Figure 3.1: The output of <code>plot_patches</code> includes a histogram and the
 </div>
 <p>The function <code>plot_patches</code> plots the temperature raster(s) overlaid with outlines of hot and cold spots, plus the temperature histogram if <code>plot_distribution = TRUE</code>.</p>
 <p>A single temperature matrix can be converted to a <code>RasterLayer</code> using <code>raster::raster()</code>. A list of matrices (such as that returned by <code>batch_convert</code>) can be converted to a <code>RasterStack</code> using <code>stack_imgs</code>. Both RasterLayer and RasterStack objects can explored using the package <a href="https://oscarperpinan.github.io/rastervis/"><code>rasterVis</code></a>. Another option is to create violin plots of raster stacks using <code>plot_stack</code>, and consider the new package <a href="https://r-spatialecology.github.io/landscapemetrics/index.html"><code>landscapemetrics</code></a> for <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04617">analysing and displaying hot and cold spots</a>.</p>
-<pre><code>## Warning: multiple methods tables found for &#39;direction&#39;</code></pre>
-<pre><code>## Warning: multiple methods tables found for &#39;gridDistance&#39;</code></pre>
-<pre><code>## Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
-## collapsing to unique &#39;x&#39; values
-
-## Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
-## collapsing to unique &#39;x&#39; values</code></pre>
 <div class="figure"><span style="display:block;" id="fig:fig-2"></span>
 <img src="/post/2022-06-13/2022-06-13_colour_files/figure-html/fig-2-1.png" alt="Violin plots created using `plot_stack`. Each datapoint is a single pixel, from the 100 pixels sampled at random from each raster. Rasters derive from thermal images collected every 20 minutes in the same location." width="672" />
 <p class="caption">
@@ -113,7 +106,7 @@ Figure 3.2: Violin plots created using <code>plot_stack</code>. Each datapoint i
 </div>
 </div>
 </div>
-<div id="the-future" class="section level1" number="4">
+<div id="section-the-future" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> The Future</h1>
 <p>We welcome feedback and suggested enhancements, which you can submit as an issue to <a href="https://github.com/rasenior/ThermStats/issues">GitHub</a>. I’d particularly like to implement processing of thermal images from other models of camera, but we currently only have access to FLIR images. Another obvious next step is testing out the biological relevance of our suggested thermal metrics. I’d be keen to hear from anyone who is interested in pursuing this!</p>
 <div class="figure">
