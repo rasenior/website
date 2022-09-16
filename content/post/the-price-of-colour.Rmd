@@ -12,12 +12,448 @@ image:
   caption: ''
   focal_point: ''
 output:
-  blogdown::html_page:
-    toc: true
-    number_sections: true
-    toc_depth: 1
+    bookdown::word_document2:
+        number_sections: true
+    blogdown::html_page:
+        toc: true
+        number_sections: true
+        toc_depth: 1
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "./")
+knitr::opts_chunk$set(echo = FALSE,message = FALSE,error = FALSE, warning = FALSE,dpi = 800,
+                      fig.align = "center", fig.pos = 'H')
+# library(kableExtra)
+# # Data wrangling
+library(dplyr)
+library(purrr)
+# # Plotting
+# library(grid)
+# library(png)
+library(ggplot2)
+library(ggnewscale)
+library(cowplot)
+# library(egg)
+# Define function to capitalise first letter
+capitalise <- function(x) {
+  s <- strsplit(x, " ")[[1]]
+  paste(toupper(substring(s, 1,1)), substring(s, 2),
+        sep = "", collapse = " ")
+}
+```
+
+```{r data}
+# load("data/sorted/juergens/analysis_data.Rdata")
+load("C:\\Users\\jqvw57\\OneDrive - Durham University\\Work\\UoF\\Colour\\data\\sorted\\juergens\\plot_data.Rdata")
+
+load("C:\\Users\\jqvw57\\OneDrive - Durham University\\Work\\UoF\\Colour\\data\\sorted\\juergens\\model_pred_data.Rdata")
+iucnpal <- iucnpal[c("CR","EN","VU","NT","LC")]
+
+load("C:\\Users\\jqvw57\\OneDrive - Durham University\\Work\\UoF\\Colour\\data\\sorted\\juergens\\traded_species.Rdata")
+```
+
+# People like aesthetically appealing things
+
+Aesthetic value can be an elephant in the room. The inconvenient truth that some people like to keep that elephant in the room for its beautiful, ivory white tusks. Others will spend eye-watering amounts of money to see elephants in the wild. The aesthetics that people value are about beauty, yes, but also the wondrous, the wacky and the weird.
+
+There is no doubt that people the world over value nature for its aesthetics. Yet this aspect of what nature means to people is often overlooked, or perhaps quietly dismissed as a non-scientific and materialistic reason to conserve biodiversity. Aesthetic value is recognised by the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES) as an important component of "nature's contribution to people", but it can feel awkward acknowledging the fact that, sometimes, the most tangible reason for wanting something to exist is so that we can enjoy looking at it. On the other hand, such a visceral appreciation of nature can speak to us in a way that facts and figures simply can't. You can recognise, for example, that it's nice to have beavers around because they're cute and interesting, but you can also be assured that their presence improves downstream water quality, creates new habitat for other species, and can save local governments lots of money on flood defence. You can have both, and perhaps you need to. Many people do not have the luxury of conserving species just because they looks nice. However, when biodiversity confers real, tangible benefits through ecosystem services, and includes species that also happen to look appealing, then perhaps we can recognise and capitalise on that aesthetic value.
+
+How can aesthetic value support biodiversity conservation? Many species that are aesthetically appealing are used as conservation flagships. Think panda, tiger, polar bear - these species rally public support, which often translates to financial support to conservation NGOs through direct donations and through zoo visits. Flagships can also engender non-monetary support, which can be important at a local scale when the public need to be on-side to follow and advocate for particular policies. US citizens, for example, surely could not stand by and let their national symbol -- the bald eagle -- go extinct? More generally, ecotourism can be a substantial income stream for local economies, which is vital to making conservation efforts a viable alternative to other, more environmentally-damaging sources of income. Ecotourism itself relies in large part on the presence of charismatic and aesthetically appealing species.
+
+There is, however, a downside to aesthetic value. Anything that you might conceivably want to preserve in the wild so you can look at it, somebody else will likely want to own for the same reason. This includes species that are traded alive, to keep as pets, and species that are traded as products like ivory, feathers and bills.
+
+# Is colour associated with trade?
+
+When we're thinking about the trade of non-mammalian animals, colour is one of the most obvious traits that people might care about. Mammals are fairly boring on this front, but other commonly traded taxa can be exceptionally colourful. Consider, for example, the colour diversity of parrots, fish, reptiles, and butterflies. If colour is part of how we value pets, then it's likely that colour can predict whether or not a species is traded. Combining this information with data on trade source and threat status can additionally help us to understand whether that trade is likely to be harmful to wild populations or not.
+
+# Why songbirds?
+
+In our study, we focused on songbirds. Songbirds are not necessarily the obvious choice for a study of colour in the pet trade, but that's partly why they're interesting. We know already that colour is part of what makes parrots desirable pets, whereas songbirds are generally thought to be traded for their song. Most parrots sound awful, and the only acoustic thing going for them is their ability to mimic interesting sounds, like human speech. Many songbirds are both acoustically and visually attractive, which is not surprising really since this is a huge bird family with many species that are sexually dimorphic and highly ornamented, for impressing mates. In this group, you will find a lot of those species with daft tail feathers and dance routines, as well as some of the most blindingly colourful and striking species. If we think that colour drives trade of parrots, then we might also expect that colour is associated with the trade of songbirds.
+
+# How do you measure colour?
+
+Colour is difficult to measure for several reasons. First, colour is usually quantified as a multidimensional metric in one of various available colourspaces. Commonly, we use the RGB (Red-Green-Blue) colourspace. RGB values range from 0 to 255, and are fairly meaningless on their own. If I give you only a Red value you can tell me very little about what the whole colour looks like, and you still might not have a great idea even if I give you the other two values. Could you tell me that 153, 102 and 51 is brown? And 255, 204, 255 is a pale pink? 
+
+We must also consider that there are many different components of colour that people might care about, and these will also be wildly subjective and culturally influenced. We can explore this by converting from using the RGB colourspace to the Hue-Saturation-Brightness colourspace (HSB; or HSV for the alternative name of Hue-Saturation-Value). Hue is often illustrated using a colour wheel, because values range from 0 to 360&deg;. The wheel can be divided into segments that correspond to colours that we have names for. If we divide the wheel evenly into just thee segments, the midpoint of each represents the primary colours: Red (0/360), Green (120) and Blue (240). Dividing each of these segments in two (i.e. six segments in total) gives the secondary colours: Yellow (60), Cyan (180) and Magenta (300) - ink cartridges! Finally, if we again divide each of those segments in two (i.e. 12 segments in total), we get the tertiary colours: Orange (30), Chartreuse Green (90), Spring Green (150), Azure (210), Violet (270) and Rose (330). An interesting side note here is that while the segments defined in this way are equally sized (each segment covers a range of 30&deg;), this doesn't match well with our perception of these different colours. Looking at the colour wheel, it's likely that you can tell the Orange segment from its neighbouring Yellow segment much more easily than you can distinguish between Spring Green and plain old Green. I wonder also if this varies by native language, because different languages emphasise distinctions at different parts of the colour wheel. My extremely limited direct experience of this comes from Scottish Gaelic, which I've been pandemic-learning on Duolingo, and which uses the word 'gorm' to mean both blue and green, while 'liath' can be blue but it can also mean grey.
+
+That gets me onto my next point - the grey area of Grey, and the not so black-and-white of Black and White. And while we're at it, where did brown go? These are interesting 'colours' that you won't find in the colour wheel. To get these colours, you need to combine the hue with the other components:  saturation and brightness. These terms are hard to define and it's best to play with a colour picker tool to really understand how they work (e.g. https://g.co/kgs/PCPwFU). Saturation is a measure of colour intensity, and brightness (or 'value') measures how dark the colour is, and both are expressed as percentages so they range from 0-100%. The combination of hue, saturation and brightness is responsible for how you actually perceive the colour. If both saturation and brightness are high, then the colour will appear more-or-less as the pure colour equivalent does on the colour wheel. For example, 30, 95, 95 in HSB colourspace will look orange. However, if brightness (/value) is low then nothing else matters - the colour will appear dark or even black, in the extreme. If brightness is middling but saturation is very low, the colour will appear grey. And, finally, if brightness is high but saturation is low, the colour will range from a muted or dirty version of the pure colour, to white in the extreme. Brown is a special case - according to its hue, brown is basically orange. A colour appears brown when its hue is in the range of orange, but where the saturation and brightness are quite low. Brown is often not distinguished from orange, but we decided to do so because there is a stark difference in how people value orange and brown. One is all about sunrises and fruit. The other is dirt and poop.
+
+The named colour categories are intuitively meaningful, but they are subjective. Thus, we also used several quantitative colour metrics. One of these is contrast, which we measured by first converting RGB values to relative luminance, ranging from the minimum value of 0 (black) to the maximum of 1 (white). You can then calculate contrast ratio, by comparing a species' maximum luminance value to its minimum, with the minimum final score of 1 indicating that all luminance values are the same (i.e. the bird is one homogeneous colour) and a maximum score of 22 for a species with black and white colouration.
+
+The problem with contrast ratio is that while black-and-white is certainly striking, one could say the same for something that is a homogenous shade of neon pink. Colour categories get at this somewhat, but they can't tell you how one species appears alongside others. In a hypothetical world in which nearly everything is neon pink instead of brown, then maybe neon pink is not such an exciting colour after all? To capture this, we developed a metric of colour uniqueness. All species are plotted in 3D RGB space according to their RGB values, and then we calculated the distance of each species from its nearest neighbours. The species that are furthest from their neighbours in RGB space are the most unique, because there are relatively few other species that occupy that region of Red, Green and Blue values.
+
+Finally, we considered colour beyond the level of the species to the level of the whole community of which each species is part. Specifically, we looked at all the species occurring within each 110 x 110 km grid cell of the world, plotted them in 3D RGB space, and calculated the volume of the smallest convex hull (a.k.a. funky multidimensional shape) that can be drawn to encompass all those species. This we refer to as colour diversity. The bigger the convex hull, the more unique combinations of Red, Green and Blue that are represented among the songbird community, and therefore the greater the overall diversity of colours represented. To understand trade, the species-specific metrics tell you what attributes predict probability of trade, but it's the community-level metrics that tell you (a) how colour is distributed spatially; and (b) what happens locally to overall community colourfulness when traded species are removed. For comparison, we also included a community-level measure of colour uniqueness, by calculating mean uniqueness scores across all the species in each grid cell. 
+
+Unsurprisingly, we found that both community colour diversity and colour uniqueness peak in the tropics. It's unsurprising because so many people instinctively think of the tropics as colourful, though this has been empirically tested surprisingly little. Given the greater number of species in the tropics, it's also highly likely that more colours are represented simply by chance. To account for this, we also calculated a Standardised Effect Size (SES) of both community colour diversity and colour uniqueness. We took all of the species that occur in each grid cell, and we repeatedly drew the same number of species at random from the global species pool to create 100 'null' communities. We recalculated each metric for each null community, and then calculated SES as the difference between the observed value and the mean value across null communities, divided by the standard deviation of the null communities. Where the resulting SES is positive, the colour metric is greater than you would expect, given the number of species. Where SES is negative, the colour metric is lower than you would expect, given the number of species. And, after all that jiggery-pokery, we confirmed that the peak of colour diversity and uniqueness fall in the tropics. The latter, curiously, is also high in the Arctic, because there are relatively more snow-camouflaged species there, and pure white turns out to be a fairly unique colour in passerines.
+
+# What did we find?
+
+First of all, we found that the distribution of colour across passerines is impressive. The interactive 3D plot below shows all species plotted in RGB space, and is the best way to appreciate the diversity of colours. Play around with it to see the distribution of colour for different body patches (e.g. crown vs. throat) and different passerine families. There is one point for each species, and the size of the point indicates the uniqueness score for that species. 
+
+You can see a big clump of points in the yellow region (high Red, high Green, low Blue), which emphasises how many species have yellow colouration. Loads of brown species too, though they are harder to see. You can also observe that the blue-coloured species tend to be both rarer and more unique. If you've got the patience, change the colour palette so that each point is shaded by the actual RGB value of that species ('raw colour'). You can zoom in on particular points to see which species they are, what their stats are, and with mouse cursor dexterity you can click a link to a Google image search for that species. You can also highlight a particular species of interest, and see how it compares to everything else. In tribute to the place where this work began, we used the beautiful Florida scrub jay (_Aphelocoma coerulescens_) in Figure 1 of the paper, alongside the LBJ that is Swainson’s warbler (_Limnothlypis swainsonii_).
 
 <iframe height="800" width="100%" frameborder="no" src="https://rasenior.shinyapps.io/stockvis/"> </iframe>
 
 <br>
+
+The final component of Figure 1 was this colour wheel, showing the number of species (points) of each hue, and again demonstrating the dominance of brown and yellow colouration. 
+
+```{r colour-wheel, eval = FALSE}
+# Function to plot hue distribution
+huewheel <- function(dat, tit = NULL){
+  wheel <-
+  ggplot(dat, aes(y = "current", x = hue, colour = colour_cat)) +
+  geom_jitter(aes(size = colour_cat),
+              alpha = 0.3,
+              shape = 16) +
+  coord_polar() +
+  theme_classic() +
+  theme(panel.grid = element_blank(),
+        axis.line = element_blank(),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.margin = margin(0,0,0,0),
+        legend.position = "none") +
+  scale_size_manual(values = c(rep(5,2), rep(10, 13))) +
+  scale_color_manual(values = pal,
+                     name = NULL,
+                     labels = gsub("_"," ",capitalise(names(pal)))) +
+  guides(colour = guide_legend(override.aes = list(alpha = 1),
+                               rows = 2, byrow = TRUE))
+  # Add title
+  if(!(is.null(tit))){
+    wheel <- wheel + ggtitle(tit)
+  }
+  return(wheel)
+}
+# For all parts of all species
+huewheel(spp_colour_main)
+```
+
+For comparison, here is a colour wheel with each species represented by a line instead of a point, and with the line coloured by the species' raw colour instead of its colour category. I'm showing here just the species with saturation and brightness values > 20, to get rid of the majority of the black, white, grey and generally miserable-looking lines. I've also ordered the lines hierarchically by hue, then by saturation, then by brightness, so you can make out species within each hue region where the colour is rather muted, next to those whose hue is much brighter. 
+
+```{r colour-wheel-hsv, eval = FALSE}
+hsvwheel <- function(dat){
+    dat <- arrange(dat, -hue, -saturation, -value)
+    p <- 
+        ggplot(dat, 
+               aes(x = "", fill = species)) +
+        # facet_wrap(~ patch) +
+        geom_bar(width = 1) +
+        theme_void() +
+        scale_fill_manual(values = dat$hex, 
+                          guide = FALSE) +
+        coord_polar(theta = "y", start = 0)
+    return(p)
+}
+
+# Raw 
+hsvwheel(spp_colour_main)
+
+# Brightest 
+hsvwheel(filter(spp_colour_main, saturation > 20, value > 20))
+```
+
+What about the all-important question of whether colour is associated with trade? In the paper we used two different trade datasets to test this, but I'm just showing results here based on the [Songbirds in Trade Database](https://www.sciencedirect.com/science/article/pii/S2352340921003772). As you can see, the answer is yes - sometimes! Nothing much going on in terms of domestic trade, but for international trade there is evidence that species that are more uniquely coloured are more likely to be traded, and this is especially so for Critically Endangered species (red). Regarding the source of those traded species, it seems that species whose trade source is primarily from captivity do not show evidence of an association between trade and colour, while species that are sourced from the wild are more likely to be traded if they are more uniquely coloured. The exception is Critically Endangered species, the trade of which is strongly related to colour when the trade source is captivity, but the opposite is true when they are sourced from the wild. What does all this mean? There's a lot going on that needs warrants further digging, to be honest. It seems that while colour does predict the international trade of Critically Endangered species, that is likely only true if the traded individuals are at least nominally sourced from captive populations. There are international restrictions on the import of wild-caught birds, particularly in the USA and the EU, so (unsurprisingly) it's likely that different countries are trading in different species, sourced in different ways and perhaps with different desirable traits. 
+
+```{r trade-unique, eval = FALSE}
+# Palette for IUCN categories
+iucnpal2 <- c("#33a02c","#b2df8a","#fee08b","#ff7f00","#e31a1c", "black")
+names(iucnpal2) <- c(levels(domesticInter_newdat$iucn), "mean")
+
+##Fig 4c/d = domestic/international trade -------------------------------------------------
+sumdat_domesticInter <-
+  group_by(domesticInter_newdat, trade_type, CU_c_spMax) %>% 
+  summarise(trade_value = mean(trade_value, na.rm = TRUE)) %>% 
+  mutate(iucn = "mean",
+         ci_lo = NA,
+         ci_hi = NA,
+         ci_lo_boot = NA,
+         ci_hi_boot = NA,
+         logis = NA) %>% 
+  dplyr::select(names(domesticInter_newdat))
+sumdat_domesticInter <- 
+  bind_rows(domesticInter_newdat, sumdat_domesticInter) %>% 
+    mutate(iucn = factor(iucn,
+                       levels = c(levels(domesticInter_newdat$iucn), "mean")),
+           trade_type = factor(trade_type,
+                             levels = c("Traded domestically", "Traded internationally"),
+                             labels = c("Traded domestically (SiTDB)",
+                                        "Traded internationally (SiTDB)")))
+# Plot
+p_domesticInter <-
+    ggplot() +
+    geom_line(data = sumdat_domesticInter,
+              aes(x = CU_c_spMax,
+                  y = trade_value,
+                  colour = iucn, 
+                  linetype = iucn)) +
+    facet_wrap(~ trade_type) +
+    xlab("") +
+    ylab("Probability of being traded (%)") +
+    scale_colour_manual(name = NULL,
+                        values = iucnpal2) +
+    scale_linetype_manual(name = NULL,
+                          values = c(rep("solid", 5), "dotted")) +
+    new_scale_color() +
+    geom_jitter(data = 
+                    spp_colour_main %>% 
+                    dplyr::select(species,family,CU_c_spMax,iucn,colour_cat,
+                                  SiTDB_domestic_trade,SiTDB_international_trade) %>% 
+                    tidyr::gather(SiTDB_domestic_trade,SiTDB_international_trade,
+                                  key = "trade_type", value = "trade_value") %>% 
+                    mutate(trade_type = factor(trade_type,
+                                               levels = c("SiTDB_domestic_trade", "SiTDB_international_trade"),
+                                               labels = c("Traded domestically (SiTDB)",
+                                                          "Traded internationally (SiTDB)"))), 
+                aes(x = CU_c_spMax, 
+                    y = trade_value,
+                    colour = colour_cat),
+                # colour = "grey",
+                size = 1,
+                width = 0, 
+                height = 0.01, 
+                alpha = 0.5) +
+    scale_colour_manual(values = pal, guide = FALSE) +
+    theme_bw() +
+    theme(panel.grid = element_blank(),
+          axis.text = element_text(size = text_size, 
+                                   colour = "black"),
+          axis.title = element_text(size = title_size),
+          strip.text = element_text(size = lab_size),
+          legend.text = element_text(size = lab_size),
+          legend.direction = "horizontal",
+          legend.position = c(0.35,0.75)) +
+    scale_y_continuous(breaks = seq(0,1,0.1),
+                       labels = seq(0,100,10))
+
+##Fig 4e/f = captive/wild trade -------------------------------------------------
+sumdat_wildCaptive <-
+  group_by(wildCaptive_newdat, trade_type, CU_c_spMax) %>% 
+  summarise(trade_value = mean(trade_value, na.rm = TRUE)) %>% 
+  mutate(iucn = "mean",
+         ci_lo = NA,
+         ci_hi = NA,
+         ci_lo_boot = NA,
+         ci_hi_boot = NA,
+         logis = NA) %>% 
+  dplyr::select(names(wildCaptive_newdat))
+sumdat_wildCaptive <- 
+  bind_rows(wildCaptive_newdat, sumdat_wildCaptive) %>%
+    mutate(iucn = factor(iucn,
+                       levels = c(levels(wildCaptive_newdat$iucn), "mean")),
+           trade_type = factor(trade_type,
+                             levels = c("Traded captive bred", "Traded wild-caught"),
+                             labels = c("Trade of captive-bred individuals (SiTDB)",
+                                        "Trade of wild-caught individuals (SiTDB)")))
+
+p_wildCaptive <-
+    ggplot() +
+    geom_line(data = sumdat_wildCaptive,
+              aes(x = CU_c_spMax,
+                  y = trade_value,
+                  colour = iucn, 
+                  linetype = iucn)) +
+    facet_wrap(~ trade_type) +
+    xlab("Global colour uniqueness") +
+    ylab("") +
+    scale_colour_manual(name = NULL,
+                        values = iucnpal2) +
+    scale_linetype_manual(name = NULL,
+                          values = c(rep("solid", 5), "dotted")) +
+    new_scale_color() +
+    geom_jitter(data = 
+                    spp_colour_main %>% 
+                    mutate(traded_wild = case_when(
+                        traded == 1 & SiTDB_wild_caught == 1 ~ 1,
+                        TRUE ~ 0),
+                        traded_captive = case_when(
+                            traded == 1 & SiTDB_wild_caught == 0 ~ 1,
+                            TRUE ~ 0)) %>% 
+                    tidyr::gather(traded_captive,traded_wild,
+                                  key = "trade_type", value = "trade_value") %>% 
+                    mutate(trade_type = factor(trade_type,
+                                               levels = c("traded_captive", "traded_wild"),
+                                               labels = c("Trade of captive-bred individuals (SiTDB)",
+                                                          "Trade of wild-caught individuals (SiTDB)"))), 
+                aes(x = CU_c_spMax, 
+                    y = trade_value,
+                    colour = colour_cat),
+                # colour = "grey",
+                size = 1,
+                width = 0, 
+                height = 0.01, 
+                alpha = 0.5) +
+    scale_colour_manual(values = pal, guide = FALSE) +
+    theme_bw() +
+    theme(panel.grid = element_blank(),
+          axis.text = element_text(size = text_size, 
+                                   colour = "black"),
+          axis.title = element_text(size = title_size),
+          strip.text = element_text(size = lab_size),
+          legend.position = "none") +
+    scale_y_continuous(breaks = seq(0,1,0.1),
+                       labels = seq(0,100,10))
+
+## Combine ---------------------------------------------------------------------
+plot_grid(p_domesticInter,
+          p_wildCaptive,
+          nrow = 2)
+```
+
+The relationship between colour and trade depends not only on trade type and trade source, but also on taxonomy. In this figure - which we weren't able to include in the supplementary material due to crazy limitations on number of supplementary figures! - you can see how the slope and intercept of the relationship varies by both Red List category and taxonomic family. Note that this model does not account for phylogenetic relatedness in the way that the main analyses do, other than by including a random slope and intercept for the taxonomic family. Thus, the model could likely be improved, but serves to at least demonstrate the taxonomic variation. Families like Corvidae and Pittadae, for example, have positive slopes and high intercepts, indicating that the more uniquely coloured species are more likely to be traded, and also that all species have a baseline high probability of being traded. Other families, such as Tyrannidae, have a consistently low probability of being traded that is irrespective of colour (low intercept, negligible slope).
+
+```{r trade-unique-family, eval = FALSE}
+ggplot(family_trade_newdat,
+       aes(x = CU_c_spMax, y = traded, colour = iucn)) +
+  geom_line() +
+  facet_wrap(~ family) +
+  xlab("Global colour uniqueness") +
+  ylab("Probability of being traded (%)") +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        legend.title = element_blank()) +
+  scale_y_continuous(breaks = seq(0, 1, 0.2),
+                     labels = seq(0, 100, 20)) +
+  scale_colour_manual(values = iucnpal)
+```
+
+Given the variation among taxonomic families, we were concerned that targeted colourful species might also be Evolutionarily Distinctive (ED) - relatively distantly related to other species, and thus contributing disproportionately to community phylogenetic diversity as well as colour diversity. In another figure axed from the supplementary material, we find that this is not the case. There is no evidence of a relationship between colour uniqueness and ED. Thus, if species were targeted mainly for their colour uniqueness and were ultimately driven locally extinct, this is not likely to have much of an effect on community phylogenetic diversity.
+
+```{r colour-ED, eval = FALSE}
+ggplot(ED_newdat, 
+       aes(x = CU_c_spMax, y = ED, group = family)) +
+    geom_ribbon(aes(ymin = CI_lo,
+                    ymax = CI_hi),
+                alpha = 0.3) +
+    xlab("Global colour uniqueness") +
+    ylab("Evolutionary Distinctiveness") +
+  geom_line() +
+  geom_point(data = spp_colour_main) +
+    facet_wrap(~ family) +
+    theme_bw() +
+    theme(panel.grid = element_blank())
+```
+
+Finally, continuing to ponder what would happen with the loss of traded species, we simulated just that by removing from 5-100% of traded species. In each simulation, the probability that a traded species would be selected for removal was weighted by its Red List category, such that threatened species were always more likely to be selected. After correcting for the loss of species richness caused by removing species, we find a contraction of the occupied colourspace and a general shift away from blue hues and towards brown. You can see this in the figure below, following the lines from 5% removal in white, up to 100% removal in black.
+
+```{r hue-density, eval = FALSE}
+# # What does colour palette look like if we lose 25, 50, 75, 100% of species
+# load("C:/Users/jqvw57/OneDrive - Durham University/Work/UoF/Colour/data/sorted/juergens/traded_species.Rdata")
+# future_species <- map(kill_species_all, pluck, 'nonrm_spp')
+# scenarios <- names(future_species)
+# 
+# # Subset colour data to future communities (without removed species)
+# spp_colour_futures <-
+#     lapply(1:20,
+#            function(scenario) {
+#                lapply(1:100,
+#                       function(iter){
+#                           keep_spp <- future_species[[scenario]][[iter]]
+#                           result <- spp_colour_main[spp_colour_main$species %in% keep_spp,]
+#                           result[,"kill_prop"] <- scenarios[scenario]
+#                           result[,"iter"] <- iter
+#                           return(result)
+#                }) %>%
+#                    bind_rows()
+#            }) %>%
+#     bind_rows()
+# saveRDS(spp_colour_futures, "~/../Desktop/spp_colour_futures.Rds")
+
+# Sort future data
+spp_colour_futures <- readRDS("~/../Desktop/spp_colour_futures.Rds")
+spp_colour_futures <-
+    dplyr::select(spp_colour_futures, 
+                  species, red, green, blue, hue, saturation, value, hex, colour_cat,
+                  kill_prop, iter) %>% 
+    mutate(kill_prop_num = 
+               as.numeric(
+               factor(kill_prop,
+                      levels = paste("prop", seq(0, 100, 5), sep = ""))))
+row.names(spp_colour_futures) <- NULL
+
+# Colour category shading
+cats <- 
+  data.frame(hues = names(pal)[!(names(pal) %in% c("light", "dark", "brown"))],
+             hex = pal[!(names(pal) %in% c("light", "dark", "brown"))],
+             xmin = seq(0, 330, 30),
+             xmax = seq(30, 360, 30))
+catpal <- cats$hex
+names(catpal) <- cats$hues
+
+# Plot
+hullp <-
+  ggplot() +
+  geom_rect(data = cats,
+            aes(xmin = xmin,
+                xmax = xmax,
+                ymin = -Inf,
+                ymax = Inf,
+                fill = hues),
+            alpha = 0.6) +
+  # Y axis label
+  geom_segment(aes(x = 0, xend = 60,
+                   y = 0.019, yend = 0.019),
+               arrow = arrow(length = unit(0.2, "cm")),
+               colour = "grey30",
+               size = 0.3) +
+  geom_text(aes(x = 30, y = 0.018, label = "Hue"),
+            colour = "grey30",
+            angle = 0,
+            size = 3) +
+  # X axis label
+  geom_segment(aes(x = 0, xend = 0,
+                   y = 0, yend = Inf),
+               arrow = arrow(length = unit(0.2, "cm")),
+               colour = "grey30",
+               size = 0.3) +
+  geom_text(aes(x = 355, y = 0.01, label = "Density"), 
+            colour = "grey30",
+            angle = 93, 
+            size = 3) +
+  geom_density(data = spp_colour_futures, 
+               aes(x = hue, 
+                   colour = kill_prop_num,
+                   group = kill_prop),
+               fill = "transparent",
+               size = 0.2) +
+  coord_polar() +
+  theme_bw() +
+  theme(panel.border = element_blank(),
+        legend.margin = margin(-20,0,0,0),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.line = element_blank(),
+        legend.position = "bottom",
+        legend.key.size = unit(5, "mm"),
+        legend.title = element_text(size = title_size),
+        legend.text = element_text(size = text_size)) +
+  scale_x_continuous(breaks = seq(0, 360, 30), expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0)) +
+  scale_fill_manual(values = pal, guide = FALSE) +
+  scale_colour_gradientn(colours = c("white", rev(grey.colors(20))),
+                         name = "Proportion species\nremoved (%)",
+                         labels = seq(0, 100, 5),
+                         breaks = 1:21
+                         ) +
+  guides(colour = guide_colorbar(barwidth = unit("8", "cm"), 
+                                 title.position = "top", title.hjust = 0.5,
+                                 raster = FALSE))
+hullp
+```
+
+# Where do we go from here?
+
+There is already a fair amount of literature on drivers of wildlife trade, but what has changed is that we now have much better data on what is actually traded, where and how. We also have unprecedented information on species' traits that are likely relevant to desirability in trade. That includes not just the traits of yore, such as body size and crude measures of attractiveness, but now we also have amazing data on plumage colour as well as masses of recordings of bird calls. One day we might also have comprehensive information on structural colours and ornamentation, and anything else you can think of that might make for a cool avian pet. 
+
+With all of this data available at a global scale, and with information on trade available at multiple scales, it becomes possible to look at many drivers of trade simultaneously, at different spatial and temporal scales. That helps us identify species at risk, which can be important for proactive rather than reactive conservation. It also helps us understand what happens to local aesthetic value at the community level, when species are traded to extinction. While that might sound superficial, remember that aesthetic value has the potential to support conservation and local economies through ecotourism. Not only that, but we've seen that colour in songbirds is concentrated in the tropics. Essentially, more arguments for wealthier countries in the Global North to invest serious amounts of money for the conservation of biodiversity in the Global South: to conserve biodiversity for the benefit of all. 
+
+
+
+
+
+
+
