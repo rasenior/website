@@ -45,12 +45,12 @@ capitalise <- function(x) {
 
 ```{r data}
 # load("data/sorted/juergens/analysis_data.Rdata")
-load("C:\\Users\\jqvw57\\OneDrive - Durham University\\Work\\UoF\\Colour\\data\\sorted\\juergens\\plot_data.Rdata")
+load("static/files/plot_data.Rdata")
 
-load("C:\\Users\\jqvw57\\OneDrive - Durham University\\Work\\UoF\\Colour\\data\\sorted\\juergens\\model_pred_data.Rdata")
+load("static/files/model_pred_data.Rdata")
 iucnpal <- iucnpal[c("CR","EN","VU","NT","LC")]
 
-load("C:\\Users\\jqvw57\\OneDrive - Durham University\\Work\\UoF\\Colour\\data\\sorted\\juergens\\traded_species.Rdata")
+load("static/files/traded_species.Rdata")
 ```
 
 # People like aesthetically appealing things
