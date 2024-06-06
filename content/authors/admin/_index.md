@@ -92,5 +92,10 @@ superuser: true
 title: Rebecca A. Senior
 ---
 
-I am a **conservation biologist** interested in exploring ecological patterns across scales to inform pragmatic and adaptable conservation practices. I have a particular interest in using advances in **technology and open data** to tackle difficult questions. I'm an avid [<i class="fab fa-r-project"></i>](https://www.r-project.org/) user, and you can follow my current work on GitHub [<i class="fab fa-github-alt"></i>](https://github.com/rasenior).
+I am a **conservation biologist** trying to find pragmatic solutions to the global biodiversity crisis. Nature is something that we should all explore, learn and benefit from -- not as a luxury, but as a necessity.
+
+My research is centred around understanding the drivers of biodiversity loss and the ways in which we can mitigate that loss. I have a keen interest in using advances in **technology and open data** to improve monitoring and inform evidence-based conservation. In particular, I believe that our understanding of climate and land-use change impacts is vastly improved by considering the climate that organims actually experience, the **microclimate**.
+
+Outside of the office, you'll usually find me outside! I was made in the Happy Valley (a.k.a. the Calder Valley), which means I love fell running and dock pudding (minus the bacon), and I have a border collie x whippet called Moss.  
+
 {style="text-align: justify;"}

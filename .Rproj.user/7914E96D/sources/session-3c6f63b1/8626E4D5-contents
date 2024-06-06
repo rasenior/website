@@ -41,13 +41,13 @@ sections:
     title: Biography
     username: admin
   id: about
-- block: skills
-  content:
-    text: ""
-    title: Skills
-    username: admin
-  design:
-    columns: "1"
+# - block: skills
+#   content:
+#     text: ""
+#     title: Skills
+#     username: admin
+#   design:
+#     columns: "1"
 - block: experience
   content:
     date_format: Jan 2006
@@ -73,7 +73,7 @@ sections:
       date_start: "2019-01-01"
       location: Gainesville, FL, USA
       title: Visiting Researcher
-    title: Experience
+    title: 
   design:
     columns: "2"
 - block: markdown
@@ -90,20 +90,12 @@ sections:
       country: United Kingdom
       country_code: UK
       postcode: "DH1 3LE"
-      street:  Department of Biosciences, Durham University
+      street:  Office 166, Department of Biosciences, Durham University
     autolink: true
     coordinates:
       latitude: "54.76505"
       longitude: "-1.57252"
-      zoom: 17
-    directions: Office 166, Department of Biosciences
     email: rebecca.a.senior@gmail.com
-    form:
-      formspree:
-        id: https://formspree.io/f/rebecca.a.senior@gmail.com
-      netlify:
-        captcha: false
-      provider: netlify
     office_hours: Monday-Friday 09:00 to 17:00 (GMT)
     phone: +44 191 334 1321
     subtitle: null
